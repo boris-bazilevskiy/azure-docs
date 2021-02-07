@@ -10,10 +10,8 @@ Planning your deployment of Direct Routing is key to a successful implementation
 - [Public trusted certificate for the SBC](#public-trusted-certificate-for-the-sbc)
 - [SIP Signaling: FQDNs](#sip-signaling-fqdns)
 - [SIP Signaling: Ports](#sip-signaling-ports)
-- [Media traffic: Port ranges](#media-traffic-port-ranges)
+- [Media traffic: IP and Port ranges](#media-traffic-ip-and-port-ranges)
 - [Supported Session Border Controllers (SBCs)](#supported-session-border-controllers-sbcs)
-
-For detailed information about configuring Direct Routing, see [Configure Direct Routing](direct-routing-configure.md).
 
 ## Infrastructure requirements
 The infrastructure requirements for the supported SBCs, domains, and other network connectivity requirements to deploy Direct Routing are listed in the following table:  
@@ -142,10 +140,18 @@ The table below summarizes the relationships between primary, secondary, and ter
 |The tertiary datacenter (sip3.pstnhub.microsoft.com)|ASIA|ASIA|EU|
 |||||
 
-## Media traffic: Port ranges
+## Media traffic: IP and Port ranges
 
-The media traffic flows to and from a separate service called Media Processor. At the moment of publishing Media processor for ACS can use any Azure IP address. 
+The media traffic flows to and from a separate service called Media Processor. At the moment of publishing Media Processor for ACS can use any Azure IP address. 
 Download [the full list of addresses](https://www.microsoft.com/en-us/download/details.aspx?id=56519).
+
+### Port range
+The port range of the Media Processors is shown in the following table: 
+
+|Traffic|From|To|Source port|Destination port|
+|:--- |:--- |:--- |:--- |:--- |
+|UDP/SRTP|Media Processor|SBC|3478-3481 and 49152 – 53247|Defined on the SBC|
+|UDP/SRTP|SBC|Media Processor|Defined on the SBC|3478-3481 and 49152 – 53247|
 
   > [!NOTE]
   > Microsoft recommends at least two ports per concurrent call on the SBC.
